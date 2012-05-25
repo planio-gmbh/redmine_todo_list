@@ -15,7 +15,7 @@
   <% @tasks.each do |task| %>
     <p class="task_content">
       <%= link_to("Mark Done", {:action => :destroy, :id => task.id}, :class => "task_done_link")%> | 
-      <%= task %>
+      <%= h task %>
     </p>
   <% end %>
 </div>
