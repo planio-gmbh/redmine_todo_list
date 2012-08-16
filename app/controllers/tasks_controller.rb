@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   unloadable
   
-  accept_key_auth :feed, :destroy
+  accept_rss_auth :feed, :destroy
 
   before_filter :require_login
   
