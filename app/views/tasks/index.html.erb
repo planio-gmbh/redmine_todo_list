@@ -1,11 +1,11 @@
-<%= stylesheet_link_tag("tasklist.css", :plugin => "redmine_todo_list") %>
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag("tasklist.css", :plugin => "redmine_todo_list") %>
+<% end %>
 
-<h2>
-  Tasks List
-</h2>
+<h2>Tasks List</h2>
 <p><%= link_to("Show Feed", {:action => :feed, :key => User.current.rss_key}, :class => "atom", :target => "_blank" )%></p>
 <div class="task_form">
-  <% form_tag(:action => :create) do %>
+  <%= form_tag(:action => :create) do %>
     <%= text_field_tag("task_body", "", :style => "width: 500px;") %>
     <%= submit_tag("Save Task") %>
   <% end %>
@@ -14,7 +14,7 @@
 <div class="task_list">
   <% @tasks.each do |task| %>
     <p class="task_content">
-      <%= link_to("Mark Done", {:action => :destroy, :id => task.id}, :class => "task_done_link")%> | 
+    <%= link_to("Mark Done", task_path(task), :method => :delete, :class => "task_done_link")%> | 
       <%= h task %>
     </p>
   <% end %>
